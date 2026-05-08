@@ -42,123 +42,71 @@
             background: #5F7F9F;
         }
 
-        /* 整体布局 */
-        .app-wrapper {
+        /* 顶部书签导航栏 */
+        .bookmark-bar {
             display: flex;
-            min-height: 100vh;
-        }
-
-        /* ========= 侧边栏 ========= */
-        .sidebar {
-            width: 260px;
-            background: rgba(12, 16, 22, 0.95);
-            backdrop-filter: blur(2px);
-            border-right: 1px solid #232A33;
-            padding: 28px 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 32px;
+            align-items: center;
+            background: #0D1117;
+            border-bottom: 1px solid #1E2A33;
+            padding: 0 24px;
+            gap: 4px;
             position: sticky;
             top: 0;
-            height: 100vh;
-            overflow-y: auto;
-            z-index: 10;
+            z-index: 100;
+            height: 56px;
         }
-        .logo-area {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+        .bookmark-logo {
             font-weight: 700;
-            font-size: 1.5rem;
+            font-size: 1.1rem;
+            margin-right: 24px;
+            white-space: nowrap;
             letter-spacing: -0.3px;
         }
-        .logo-icon {
-            background: linear-gradient(135deg, #3B82F6, #2DD4BF);
-            width: 36px;
-            height: 36px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .logo-icon i {
-            font-size: 1.3rem;
-            color: white;
-        }
-        .logo-text span {
+        .bookmark-logo span {
             background: linear-gradient(120deg, #C084FC, #60A5FA);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
         }
-        .nav {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        .nav-item {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 10px 16px;
-            border-radius: 14px;
-            color: #9AAEBF;
-            transition: all 0.2s;
-            font-weight: 500;
+        .bookmark-tab {
+            padding: 14px 28px;
+            color: #7E95AE;
             cursor: pointer;
+            font-weight: 500;
+            font-size: 0.9rem;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+            white-space: nowrap;
+            position: relative;
+            top: 1px;
         }
-        .nav-item:hover {
-            background: #1A242F;
-            color: white;
+        .bookmark-tab:hover {
+            color: #C0D0E0;
+            background: #111920;
+            border-radius: 8px 8px 0 0;
         }
-        .nav-item.active {
-            background: #1F2A36;
-            color: white;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        .bookmark-tab.active {
+            color: #77F0D0;
+            border-bottom: 2px solid #2DD4BF;
+            font-weight: 600;
         }
-        .nav-item i {
-            width: 24px;
-            font-size: 1.2rem;
+        .bookmark-tab i {
+            margin-right: 6px;
         }
-        .bottom-meta {
-            margin-top: auto;
+        .bookmark-meta {
+            margin-left: auto;
             font-size: 0.7rem;
             color: #4F6F8F;
-            border-top: 1px solid #232A33;
-            padding-top: 20px;
-        }
-
-        /* 主内容区 */
-        .main-content {
-            flex: 1;
-            padding: 24px 32px;
-            overflow-x: auto;
-        }
-
-        /* 顶部条 */
-        .top-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 28px;
-            flex-wrap: wrap;
-        }
-        .page-title h1 {
-            font-size: 1.8rem;
-            font-weight: 600;
-            letter-spacing: -0.4px;
-        }
-        .badge-ai {
-            background: #1E2A36;
-            border-radius: 40px;
-            padding: 6px 14px;
-            font-size: 0.8rem;
             display: flex;
             align-items: center;
             gap: 8px;
         }
-        .badge-ai i {
-            color: #2DD4BF;
+
+        /* 内容区 */
+        .main-content {
+            padding: 24px 32px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         /* 卡片样式 */
@@ -338,111 +286,127 @@
             -webkit-background-clip: text;
             color: transparent;
         }
-        /* 锚点偏移修正，防止固定栏遮挡 */
-        .scroll-margin {
-            scroll-margin-top: 80px;
+        .tab-panel {
+            display: none;
+        }
+        .tab-panel.active {
+            display: block;
+        }
+        .tab-nav-btn {
+            background: transparent;
+            border: none;
+            color: #9AAEBF;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tab-nav-btn:hover {
+            background: #1A2A36;
+            color: #E0E8F0;
+        }
+        .tab-nav-btn.active {
+            background: #1E3540;
+            color: #77F0D0;
+            box-shadow: 0 0 12px rgba(45,212,191,0.15);
+        }
+        .stock-select-btn {
+            background: #111920;
+            border: 1px solid #232B34;
+            color: #B0C0D0;
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+            margin: 3px;
+        }
+        .stock-select-btn:hover, .stock-select-btn.active {
+            background: #1A3A2A;
+            color: #77F0D0;
+            border-color: #2DD4BF;
         }
     </style>
 </head>
 <body>
-<div class="app-wrapper">
-    <!-- 侧边栏 (完全可点导航) -->
-    <div class="sidebar">
-        <div class="logo-area">
-            <div class="logo-icon"><i class="fas fa-brain"></i></div>
-            <div class="logo-text">AISight<span>Alpha</span></div>
-        </div>
-        <div class="nav" id="mainNav">
-            <div class="nav-item" data-target="dashboardSection"><i class="fas fa-chart-line"></i> 仪表板</div>
-            <div class="nav-item" data-target="stockPoolSection"><i class="fas fa-database"></i> 股票池</div>
-            <div class="nav-item" data-target="valuationSection"><i class="fas fa-robot"></i> AI估值</div>
-            <div class="nav-item" data-target="signalsSection"><i class="fas fa-signal"></i> 信号中心</div>
-            <div class="nav-item" data-target="memorySection"><i class="fas fa-history"></i> 记忆系统</div>
-            <div class="nav-item" data-target="settingsDummy"><i class="fas fa-cog"></i> 设置(演示)</div>
-        </div>
-        <div class="bottom-meta">
-            <div><i class="fas fa-microchip"></i> 主动记忆引擎 v2.4</div>
-            <div>历史决策回溯 · 动态权重</div>
+
+<!-- 顶部书签导航栏 -->
+<div class="bookmark-bar">
+    <div class="bookmark-logo">AISight<span>Alpha</span></div>
+    <div class="bookmark-tab active" onclick="switchTab('pool')"><i class="fas fa-database"></i>股票池</div>
+    <div class="bookmark-tab" onclick="switchTab('valuation')"><i class="fas fa-robot"></i>AI估值</div>
+    <div class="bookmark-tab" onclick="switchTab('signals')"><i class="fas fa-signal"></i>信号中心</div>
+    <div class="bookmark-meta" id="bookmarkMeta">加载中...</div>
+</div>
+
+<!-- 内容区 -->
+<div class="main-content">
+
+    <!-- ═══ 股票池 ═══ -->
+    <div id="tab-pool" class="tab-panel active">
+        <div class="card">
+            <div class="card-header">
+                <span><i class="fas fa-chart-simple"></i> 量化股票池 · 四模块100分制分层</span>
+                <span class="update-badge" id="poolInfo"><i class="fas fa-layer-group"></i> 加载中...</span>
+            </div>
+            <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;background:#0A0E14;border-radius:14px;padding:6px;" id="poolTabs">
+                <button id="tab-core" class="pool-tab active" onclick="switchPoolView('core')" style="background:linear-gradient(135deg,#1A3A2A,#1F4A3C);color:#77F0D0;border:2px solid #2DD4BF;padding:8px 18px;border-radius:12px;cursor:pointer;font-size:0.85rem;font-weight:700;box-shadow:0 0 12px rgba(45,212,191,0.2);">🥇 核心精选池 ≥70分</button>
+                <button id="tab-obs" class="pool-tab" onclick="switchPoolView('obs')" style="background:#11161E;color:#B0C0D0;border:2px solid #2A3540;padding:8px 18px;border-radius:12px;cursor:pointer;font-size:0.85rem;font-weight:600;">👀 观察备选池 60-69分</button>
+                <button id="tab-all" class="pool-tab" onclick="switchPoolView('all')" style="background:#11161E;color:#B0C0D0;border:2px solid #2A3540;padding:8px 18px;border-radius:12px;cursor:pointer;font-size:0.85rem;font-weight:600;">📋 全部合格池 ≥60分</button>
+            </div>
+            <div style="overflow-x:auto;">
+                <table class="stock-table" id="stockTable">
+                    <thead>
+                        <tr><th>股票</th><th>综合评分<span style="font-weight:normal;font-size:0.7rem;"> 主+基+技+消</span></th><th>涨跌幅<span style="font-weight:normal;font-size:0.7rem;"> 当日</span></th><th>趋势/策略</th><th>信号</th></tr>
+                    </thead>
+                    <tbody id="stockTableBody"></tbody>
+                </table>
+            </div>
+            <div class="update-badge" style="margin-top:12px;"><i class="fas fa-chart-line"></i> 点击行查看估值详情 → 四模块: 主线政策30 + 基本面30 + 技术资金30 + 消息情绪10</div>
         </div>
     </div>
 
-    <!-- 主内容区域 -->
-    <div class="main-content">
-        <!-- 锚点区域：仪表板综合区块（顶部区域） -->
-        <div id="dashboardSection" class="scroll-margin">
-            <div class="top-bar">
-                <div class="page-title">
-                    <h1>智能投研决策舱 <span style="font-size: 0.9rem; font-weight: normal;">AI基本面+技术面融合</span></h1>
-                    <div style="font-size: 0.75rem; color:#7E95AE;">实时聚合·多维验证·记忆增强</div>
-                </div>
-                <div class="badge-ai"><i class="fas fa-circle-nodes"></i> 预测准确率(30d): 68.4% ↑3%</div>
-            </div>
+    <!-- ═══ AI估值 ═══ -->
+    <div id="tab-valuation" class="tab-panel">
+        <div style="margin-bottom:16px;">
+            <span style="font-size:0.8rem;color:#7E95AE;">选择股票查看估值详情：</span>
+            <div id="valuationStockSelector" style="margin-top:8px;display:flex;flex-wrap:wrap;gap:4px;"></div>
         </div>
-
-        <!-- 区域：股票池 + 右侧估值/信号 二列布局 (股票池区块单独锚点) -->
-        <div class="grid-2col" id="stockPoolSection" class="scroll-margin">
-            <!-- 左侧：精英股票池 -->
-            <div class="card">
-                <div class="card-header">
-                    <span><i class="fas fa-chart-simple"></i> 量化股票池 · 四模块100分制分层</span>
-                    <span class="update-badge" id="poolInfo"><i class="fas fa-layer-group"></i> 加载中...</span>
-                </div>
-                <!-- 分层切换标签 -->
-                <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;background:#0A0E14;border-radius:14px;padding:6px;" id="poolTabs">
-                    <button id="tab-core" class="pool-tab active" onclick="switchPoolView('core')" style="background:linear-gradient(135deg, #1A3A2A, #1F4A3C);color:#77F0D0;border:2px solid #2DD4BF;padding:8px 18px;border-radius:12px;cursor:pointer;font-size:0.85rem;font-weight:700;box-shadow:0 0 12px rgba(45,212,191,0.2);">🥇 核心精选池 ≥70分</button>
-                    <button id="tab-obs" class="pool-tab" onclick="switchPoolView('obs')" style="background:#11161E;color:#B0C0D0;border:2px solid #2A3540;padding:8px 18px;border-radius:12px;cursor:pointer;font-size:0.85rem;font-weight:600;">👀 观察备选池 60-69分</button>
-                    <button id="tab-all" class="pool-tab" onclick="switchPoolView('all')" style="background:#11161E;color:#B0C0D0;border:2px solid #2A3540;padding:8px 18px;border-radius:12px;cursor:pointer;font-size:0.85rem;font-weight:600;">📋 全部合格池 ≥60分</button>
-                </div>
-                <div style="overflow-x: auto;">
-                    <table class="stock-table" id="stockTable">
-                        <thead>
-                            <tr><th>股票</th><th>综合评分<br><span style="font-weight: normal;">主+基+技+消</span></th><th>涨跌幅<br><span style="font-weight: normal;">当日</span></th><th>趋势/策略</th><th>信号倾向</th></tr>
-                        </thead>
-                        <tbody id="stockTableBody"></tbody>
-                    </table>
-                </div>
-                <div class="update-badge" style="margin-top: 12px;"><i class="fas fa-chart-line"></i> 四模块100分制: 主线政策30 + 基本面30 + 技术资金30 + 消息情绪10</div>
-            </div>
-
-            <!-- 右侧：估值 + 信号 -->
-            <div style="display: flex; flex-direction: column; gap: 24px;">
-                <!-- 估值卡片 (基本面/技术面/情绪面) 锚点 -->
-                <div class="card" id="valuationSection" class="scroll-margin">
-                    <div class="card-header">
-                        <span><i class="fas fa-coins"></i> 智能估值引擎 | 当前焦点: <strong id="currentStockName">格林美 (002340)</strong></span>
-                        <span class="update-badge" id="valuationUpdateTime"><i class="far fa-calendar-alt"></i> 2026-05-06 更新</span>
-                    </div>
-                    <div class="valuation-metrics" id="valuationMetrics"></div>
-                    <div style="margin-top: 12px; font-size: 0.75rem; background: #0C1119; border-radius: 18px; padding: 12px;">
-                        <i class="fas fa-chart-line"></i> <strong>综合研判</strong> —— <span id="fairValueComment">基于业绩拐点与资金情绪，估值中枢上移，技术指标多头排列。</span>
-                    </div>
-                </div>
-
-                <!-- 信号功能 锚点 -->
-                <div class="card" id="signalsSection" class="scroll-margin">
-                    <div class="card-header">
-                        <span><i class="fas fa-waveform"></i> 实时信号 · AI决策流</span>
-                        <span><i class="fas fa-gauge-high"></i> 信号强弱量化</span>
-                    </div>
-                    <div id="signalsContainer" class="signals-list"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 历史记忆系统 锚点 -->
-        <div class="card" id="memorySection" class="scroll-margin" style="margin-top: 8px;">
+        <div class="card">
             <div class="card-header">
-                <span><i class="fas fa-brain"></i> 历史记忆系统 · 强化学习回路</span>
-                <span class="badge-ai" style="background:#1F2A3A;"><i class="fas fa-database"></i> 记忆窗口: 过去12笔决策 | 动态优化权重</span>
+                <span><i class="fas fa-coins"></i> 智能估值引擎 | <strong id="valStockName">—</strong></span>
+                <span class="update-badge" id="valuationUpdateTime"><i class="far fa-calendar-alt"></i> —</span>
+            </div>
+            <div class="valuation-metrics" id="valuationMetrics"></div>
+            <div style="margin-top:12px;font-size:0.8rem;background:#0C1119;border-radius:18px;padding:14px;">
+                <i class="fas fa-chart-line"></i> <strong>综合研判</strong> —— <span id="fairValueComment">请从股票池点击股票或上方选择查看估值详情。</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ 信号中心 ═══ -->
+    <div id="tab-signals" class="tab-panel">
+        <div class="card">
+            <div class="card-header">
+                <span><i class="fas fa-waveform"></i> 实时信号 · AI决策流</span>
+                <span id="signalSummary"><i class="fas fa-gauge-high"></i> 共 0 条信号</span>
+            </div>
+            <div id="signalsContainer" class="signals-list"></div>
+        </div>
+        <div class="card" style="margin-top:20px;">
+            <div class="card-header">
+                <span><i class="fas fa-brain"></i> 记忆系统</span>
+                <span style="font-size:0.7rem;color:#6E8FB0;">历史决策回溯 · 动态权重</span>
             </div>
             <div id="memoryPanel"></div>
-            <div style="margin-top: 12px; background: #0B1118; border-radius: 16px; padding: 12px; font-size: 0.75rem; color:#A0C0E0;">
-                <i class="fas fa-arrows-spin"></i> <strong>记忆机制</strong> · 每次信号生成均对比历史相似情景，调校置信度。近期正确决策占比提升 → 模型倾向上调评分。
-            </div>
         </div>
-        <!-- 设置演示占位 -->
-        <div id="settingsDummy" class="scroll-margin" style="margin-top: 24px; text-align: center; font-size: 0.7rem; color:#4F6F8F;">⚙️ 设置中心 (演示版) · 更多参数配置即将开放</div>
     </div>
+
 </div>
 
 <script>
@@ -454,30 +418,48 @@ const valuationMap = pipelineData.valuationMap;
 const signalsList = pipelineData.signalsList;
 let historicalMemories = pipelineData.historicalMemories;
 let currentPoolView = 'core';
+let currentStock = null;
 
 stocksData.forEach(s => { if (!s.combinedScore) s.combinedScore = s.mainScore + s.fundScore + s.techScore + s.newsScore; });
 stocksData.sort((a,b) => b.combinedScore - a.combinedScore);
+if (stocksData.length > 0) currentStock = stocksData[0];
 
 function getValuation(stockCode) {
-    return valuationMap[stockCode] || { fundamental:70, technical:70, sentiment:65, pe:25, pb:2.5, growthNote:"行业均衡", targetRange:"建议观望" };
+    return valuationMap[stockCode] || { fundamental:70, technical:70, sentiment:65, pe:25, pb:2.5, growthNote:"行业均衡配置", targetRange:"建议观望", valuationMethod:"", confidence:"", industryHealth:"", macroCycle:"", marketStyle:"" };
 }
 
-let currentStock = stocksData[0];
+// ═══ 顶部书签切换 ═══
+function switchTab(tab) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.bookmark-tab').forEach(n => n.classList.remove('active'));
+    const panel = document.getElementById('tab-' + tab);
+    if (panel) panel.classList.add('active');
+    const tabs = document.querySelectorAll('.bookmark-tab');
+    const idx = {pool:0, valuation:1, signals:2}[tab] || 0;
+    if (tabs[idx]) tabs[idx].classList.add('active');
+    if (tab === 'valuation') { renderValuationTab(); }
+    if (tab === 'signals') { renderSignalsTab(); }
+}
 
+// ═══ 股票池内部层切换 ═══
 function switchPoolView(view) {
     currentPoolView = view;
     document.querySelectorAll('.pool-tab').forEach(t => {
         t.classList.remove('active');
-        t.style.background = '#1A252F';
-        t.style.color = '#9AAEBF';
-        t.style.borderColor = '#2A3A4A';
+        t.style.background = '#11161E';
+        t.style.color = '#B0C0D0';
+        t.style.borderColor = '#2A3540';
+        t.style.boxShadow = 'none';
+        t.style.fontWeight = '600';
     });
     const activeTab = document.getElementById('tab-' + view);
     if (activeTab) {
         activeTab.classList.add('active');
-        activeTab.style.background = '#1A2F2A';
+        activeTab.style.background = 'linear-gradient(135deg, #1A3A2A, #1F4A3C)';
         activeTab.style.color = '#77F0D0';
-        activeTab.style.borderColor = '#2A4A3A';
+        activeTab.style.borderColor = '#2DD4BF';
+        activeTab.style.boxShadow = '0 0 16px rgba(45,212,191,0.3)';
+        activeTab.style.fontWeight = '700';
     }
     renderStockPool();
 }
@@ -511,7 +493,7 @@ function renderStockPool() {
         cellScore.innerHTML = '<span class="score-high" style="background:' + scoreColor + ';">' + stock.combinedScore + '分</span><br><span style="font-size:0.6rem;color:#8BA0B2;">主' + stock.mainScore + '+基' + stock.fundScore + '+技' + stock.techScore + '+消' + stock.newsScore + '</span>';
         const cellChg = row.insertCell(2);
         const chgColor = stock.pct_chg >= 0 ? '#F88F8F' : '#77F0D0';
-        cellChg.innerHTML = '<span style="color:' + chgColor + ';font-weight:600;">' + (stock.pct_chg>0?'+':'') + stock.pct_chg.toFixed(2) + '%</span><br><span style="font-size:0.65rem;">量比 ' + (stock.vol_ratio||'-').toFixed(1) + '</span>';
+        cellChg.innerHTML = '<span style="color:' + chgColor + ';font-weight:600;">' + (stock.pct_chg>0?'+':'') + stock.pct_chg.toFixed(2) + '%</span><br><span style="font-size:0.65rem;">量比 ' + (stock.vol_ratio||0).toFixed(1) + '</span>';
         const cellTrend = row.insertCell(3);
         cellTrend.innerHTML = stock.trend + '<br><span style="font-size:0.65rem;color:#8BA0B2;">' + (stock.strategy||'') + '</span>';
         const cellSig = row.insertCell(4);
@@ -519,66 +501,123 @@ function renderStockPool() {
         cellSig.innerHTML = '<span style="color:' + sigColor + ';font-weight:600;">' + stock.signal + '</span> <span style="font-size:0.7rem;">(' + stock.signalStrength + '%)</span>';
         row.addEventListener('click', () => {
             currentStock = stock;
-            updateValuationAndSignals(stock);
-            document.getElementById('valuationSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            switchTab('valuation');
         });
     });
+    // 更新统计标签
     const infoEl = document.getElementById('poolInfo');
-    if (infoEl) {
-        infoEl.innerHTML = '<i class="fas fa-layer-group"></i> ' +
-            (currentPoolView==='core' ? '核心精选池 ≥70分: <strong>' + corePool.length + '</strong> 只' :
-             currentPoolView==='obs' ? '观察备选池 60-69分: <strong>' + obsPool.length + '</strong> 只' :
-             '全部合格池 ≥60分: <strong>' + stocksData.length + '</strong> 只') +
-            ' | 总计 <strong>' + pipelineData.meta.totalQualified + '</strong> 只合格标的';
-    }
-    // 动态更新标签按钮文字（含各层数量）
+    if (infoEl) infoEl.innerHTML = '<i class="fas fa-layer-group"></i> ' +
+        (currentPoolView==='core' ? '核心精选池 ≥70分: <strong>' + corePool.length + '</strong> 只' :
+         currentPoolView==='obs' ? '观察备选池 60-69分: <strong>' + obsPool.length + '</strong> 只' :
+         '全部合格池 ≥60分: <strong>' + stocksData.length + '</strong> 只') +
+        ' | 总计 <strong>' + pipelineData.meta.totalQualified + '</strong> 只合格';
     const tabCore = document.getElementById('tab-core');
     const tabObs = document.getElementById('tab-obs');
     const tabAll = document.getElementById('tab-all');
     if (tabCore) tabCore.innerHTML = '🥇 核心精选池 ≥70分 <span style="opacity:0.7;font-size:0.7rem;">(' + corePool.length + '只)</span>';
     if (tabObs) tabObs.innerHTML = '👀 观察备选池 60-69分 <span style="opacity:0.7;font-size:0.7rem;">(' + obsPool.length + '只)</span>';
     if (tabAll) tabAll.innerHTML = '📋 全部合格池 ≥60分 <span style="opacity:0.7;font-size:0.7rem;">(' + stocksData.length + '只)</span>';
+    // 更新顶部栏
+    const topBar = document.getElementById('topBarInfo');
+    if (topBar) topBar.innerHTML = '生成时间: ' + pipelineData.meta.generatedAt + ' | 核心' + corePool.length + '只 + 观察' + obsPool.length + '只 | 四模块100分制';
+    const bm = document.getElementById('bookmarkMeta');
+    if (bm) bm.innerHTML = '<i class="fas fa-microchip"></i> ' + pipelineData.meta.generatedAt + ' · ' + pipelineData.meta.totalQualified + '只合格';
 }
 
-function updateValuationAndSignals(stock) {
-    const nameEl = document.getElementById('currentStockName');
-    if (nameEl) nameEl.innerHTML = stock.name + ' (' + stock.code + ')';
+// ═══ 估值Tab ═══
+function renderValuationTab() {
+    // 渲染股票选择按钮（核心池股票）
+    const selector = document.getElementById('valuationStockSelector');
+    if (selector) {
+        let btns = '';
+        corePool.forEach(s => {
+            const sel = (currentStock && currentStock.code === s.code) ? ' active' : '';
+            btns += '<button class="stock-select-btn' + sel + '" onclick="selectValuationStock('' + s.code + '')">' + s.name + '<br><span style="font-size:0.6rem;opacity:0.7;">' + s.combinedScore + '分</span></button>';
+        });
+        if (obsPool.length > 0) {
+            btns += '<span style="font-size:0.7rem;color:#6E8FB0;margin:4px 8px;">观察池:</span>';
+            obsPool.slice(0, 10).forEach(s => {
+                const sel = (currentStock && currentStock.code === s.code) ? ' active' : '';
+                btns += '<button class="stock-select-btn' + sel + '" onclick="selectValuationStock('' + s.code + '')">' + s.name + '<br><span style="font-size:0.6rem;opacity:0.7;">' + s.combinedScore + '分</span></button>';
+            });
+        }
+        selector.innerHTML = btns;
+    }
+    updateValuationDetail(currentStock);
+}
+
+function selectValuationStock(code) {
+    const found = stocksData.find(s => s.code === code);
+    if (found) { currentStock = found; updateValuationDetail(found); renderValuationTab(); }
+}
+
+function updateValuationDetail(stock) {
+    if (!stock) return;
+    const nameEl = document.getElementById('valStockName');
+    if (nameEl) nameEl.innerHTML = stock.name + ' (' + stock.code + ') · ' + (stock.sector||'综合');
     const valuation = getValuation(stock.code);
     const fs = valuation.fundamental, ts = valuation.technical, ss = valuation.sentiment;
     const overall = Math.round((fs + ts + ss) / 3);
     const metricsEl = document.getElementById('valuationMetrics');
     if (metricsEl) {
         metricsEl.innerHTML =
-            '<div class="metric-circle"><div style="font-size:0.7rem;">基本面估值</div><div class="metric-value">' + fs + '</div><div>PE ' + (stock.pe||0).toFixed(1) + ' / PB ' + (stock.pb||0).toFixed(2) + '</div></div>' +
-            '<div class="metric-circle"><div style="font-size:0.7rem;">技术面估值</div><div class="metric-value">' + ts + '</div><div>' + (stock.trend||'') + ' · ' + (stock.strategy||'') + '</div></div>' +
-            '<div class="metric-circle"><div style="font-size:0.7rem;">情绪面估值</div><div class="metric-value">' + ss + '</div><div>量比' + (stock.vol_ratio||0).toFixed(1) + ' · 换手' + (stock.turnover||0).toFixed(1) + '%</div></div>' +
-            '<div class="metric-circle"><div style="font-size:0.7rem;">综合估值</div><div class="metric-value">' + overall + '</div><div>目标: ' + (valuation.targetRange||'-') + '</div></div>';
+            '<div class="metric-circle"><div style="font-size:0.7rem;">基本面估值</div><div class="metric-value" style="color:#60A5FA;">' + fs + '</div><div>PE ' + (stock.pe||0).toFixed(1) + ' / PB ' + (stock.pb||0).toFixed(2) + '</div></div>' +
+            '<div class="metric-circle"><div style="font-size:0.7rem;">技术面估值</div><div class="metric-value" style="color:#2DD4BF;">' + ts + '</div><div>' + (stock.trend||'') + ' · ' + (stock.strategy||'') + '</div></div>' +
+            '<div class="metric-circle"><div style="font-size:0.7rem;">情绪面估值</div><div class="metric-value" style="color:#C084FC;">' + ss + '</div><div>量比' + (stock.vol_ratio||0).toFixed(1) + ' · 换手' + (stock.turnover||0).toFixed(1) + '%</div></div>' +
+            '<div class="metric-circle"><div style="font-size:0.7rem;">综合估值</div><div class="metric-value" style="color:#77F0D0;">' + overall + '</div><div>目标: ' + (valuation.targetRange||'-') + '</div></div>';
     }
     const commentEl = document.getElementById('fairValueComment');
-    if (commentEl) commentEl.innerHTML = '当前<strong>' + stock.name + '</strong> 四维评分: 主线' + stock.mainScore + ' + 基本面' + stock.fundScore + ' + 技术' + stock.techScore + ' + 消息' + stock.newsScore + ' = <strong>' + stock.combinedScore + '分</strong>。' + (valuation.growthNote||'') + '。AI量化管线实时分析。';
+    let valMethodStr = valuation.valuationMethod ? ' · 估值方法: <strong>' + valuation.valuationMethod + '</strong>' : '';
+    let confidenceStr = valuation.confidence ? ' · 置信度: ' + valuation.confidence : '';
+    let macroStr = valuation.macroCycle ? ' · ' + valuation.macroCycle : '';
+    let industryStr = valuation.industryHealth ? ' · 行业景气: ' + valuation.industryHealth : '';
+    if (commentEl) commentEl.innerHTML = '<strong>' + stock.name + '</strong> 四维评分: 主线' + stock.mainScore + ' + 基本面' + stock.fundScore + ' + 技术' + stock.techScore + ' + 消息' + stock.newsScore + ' = <strong>' + stock.combinedScore + '分</strong>' + valMethodStr + confidenceStr + industryStr + macroStr + '。<br>' + (valuation.growthNote||'');
     const timeEl = document.getElementById('valuationUpdateTime');
-    if (timeEl) timeEl.innerHTML = '<i class="far fa-calendar-alt"></i> ' + pipelineData.meta.generatedAt + ' 实时数据 · AKShare · 四模块100分制';
-    renderSignals(stock);
+    if (timeEl) timeEl.innerHTML = '<i class="far fa-calendar-alt"></i> ' + pipelineData.meta.generatedAt + ' · AKShare实时' + (valuation.valuationMethod ? ' · ' + valuation.valuationMethod : '');
 }
 
-function renderSignals(activeStock) {
+function updateValuationAndSignals(stock) {
+    // 兼容旧调用：切换到估值tab
+    currentStock = stock;
+    switchTab('valuation');
+}
+
+// ═══ 信号Tab ═══
+function renderSignalsTab() {
     const container = document.getElementById('signalsContainer');
     if (!container) return;
     let html = '';
-    signalsList.forEach(sig => {
-        let isCurrent = (sig.stockCode === activeStock.code);
-        let extraStyle = isCurrent ? 'border-left:4px solid #2DD4BF; background:#18222F;' : '';
-        let memoryBoost = 0;
-        const related = historicalMemories.filter(m => m.stock === sig.stockName && (m.outcome||'').includes('盈利'));
-        if (related.length > 0) memoryBoost = Math.min(10, related.length * 2);
-        let finalStrength = Math.min(98, sig.strength + memoryBoost);
-        let strengthDesc = finalStrength >= 75 ? '强烈' : (finalStrength >= 50 ? '中等' : '偏弱');
-        let typeColor = (sig.type === '买入' || sig.type === '增持') ? '#2DD4BF' : (sig.type === '卖出' || sig.type === '清仓' || sig.type === '减持' ? '#F88F8F' : '#FFD966');
-        html += '<div class="signal-item" style="' + extraStyle + '"><div style="flex:2"><strong>' + sig.stockName + '</strong> · <span style="color:' + typeColor + ';">' + sig.type + '</span><div style="font-size:0.7rem;">' + (sig.reason||'') + '</div><div style="font-size:0.65rem;margin-top:4px;"><i class="fas fa-memory"></i> 记忆修正: +' + memoryBoost + '% 置信度</div></div><div style="text-align:right;min-width:110px;"><div style="font-size:1rem;font-weight:700;">' + finalStrength.toFixed(0) + '%</div><div class="strength-bar"><div class="rating-fill" style="width:' + finalStrength + '%; background:#60A5FA;"></div></div><div style="font-size:0.65rem;">信号强度 ' + strengthDesc + '</div></div></div>';
-    });
-    container.innerHTML = html;
+    const buySignals = signalsList.filter(s => s.type === '买入' || s.type === '增持');
+    const holdSignals = signalsList.filter(s => s.type === '持仓' || s.type === '观望');
+    const sellSignals = signalsList.filter(s => s.type === '卖出' || s.type === '清仓' || s.type === '减持');
+    const summary = document.getElementById('signalSummary');
+    if (summary) summary.innerHTML = '<i class="fas fa-gauge-high"></i> 买入/增持 ' + buySignals.length + ' | 持仓/观望 ' + holdSignals.length + ' | 卖出/减持 ' + sellSignals.length;
+
+    function renderGroup(title, sigs, icon, color) {
+        if (sigs.length === 0) return;
+        html += '<div style="margin-bottom:12px;"><div style="font-size:0.8rem;color:' + color + ';margin-bottom:8px;font-weight:600;">' + icon + ' ' + title + ' (' + sigs.length + ')</div>';
+        sigs.forEach(sig => {
+            let memoryBoost = 0;
+            const related = historicalMemories.filter(m => m.stock === sig.stockName && (m.outcome||'').includes('盈利'));
+            if (related.length > 0) memoryBoost = Math.min(10, related.length * 2);
+            let finalStrength = Math.min(98, sig.strength + memoryBoost);
+            let strengthDesc = finalStrength >= 75 ? '强烈' : (finalStrength >= 50 ? '中等' : '偏弱');
+            html += '<div class="signal-item" style="margin-bottom:8px;"><div style="flex:2"><strong>' + sig.stockName + '</strong> · <span style="color:' + color + ';">' + sig.type + '</span><div style="font-size:0.7rem;">' + (sig.reason||'') + '</div><div style="font-size:0.65rem;margin-top:4px;"><i class="fas fa-memory"></i> 记忆修正: +' + memoryBoost + '%</div></div><div style="text-align:right;min-width:110px;"><div style="font-size:1rem;font-weight:700;">' + finalStrength.toFixed(0) + '%</div><div class="strength-bar"><div class="rating-fill" style="width:' + finalStrength + '%; background:#60A5FA;"></div></div><div style="font-size:0.65rem;">' + strengthDesc + '</div></div></div>';
+        });
+        html += '</div>';
+    }
+    renderGroup('买入/增持', buySignals, '🟢', '#2DD4BF');
+    renderGroup('持仓/观望', holdSignals, '🟡', '#FFD966');
+    renderGroup('卖出/减持', sellSignals, '🔴', '#F88F8F');
+    container.innerHTML = html || '<div style="text-align:center;padding:20px;color:#7E95AE;">暂无信号</div>';
 }
 
+function renderSignals(activeStock) {
+    // 兼容旧调用
+    renderSignalsTab();
+}
+
+// ═══ 记忆系统 ═══
 function renderMemorySystem() {
     const div = document.getElementById('memoryPanel');
     if (!div) return;
@@ -586,35 +625,16 @@ function renderMemorySystem() {
     historicalMemories.forEach(mem => {
         memHtml += '<div class="memory-item"><div style="display:flex;justify-content:space-between;"><span><i class="fas fa-calendar-day"></i> ' + mem.date + ' · ' + mem.stock + '</span><span style="color:#60A5FA;">' + mem.decision + '</span></div><div style="font-size:0.75rem;margin:6px 0;">结果: ' + mem.outcome + ' | 学习: ' + mem.lesson + '</div><div style="font-size:0.7rem;color:#B0D4FF;">→ ' + mem.weightImpact + '</div></div>';
     });
-    memHtml += '</div><div style="margin-top:10px;background:#0D1620;border-radius:14px;padding:8px;font-size:0.75rem;"><i class="fas fa-chart-line"></i> 四模块100分制量化管线 · 基于<strong>真实A股行情</strong> · 主线(行业政策)+基本面+技术+情绪四维校验</div>';
+    memHtml += '</div><div style="margin-top:10px;background:#0D1620;border-radius:14px;padding:8px;font-size:0.75rem;"><i class="fas fa-chart-line"></i> 四模块100分制量化管线 · <strong>真实A股行情</strong> · 主线+基本面+技术+情绪四维校验</div>';
     div.innerHTML = memHtml;
 }
 
-function initNavigation() {
-    const navItems = document.querySelectorAll('.nav-item');
-    function setActive(activeId) {
-        navItems.forEach(item => {
-            const target = item.getAttribute('data-target');
-            if (target === activeId) item.classList.add('active'); else item.classList.remove('active');
-        });
-    }
-    navItems.forEach(item => {
-        item.addEventListener('click', () => {
-            const targetId = item.getAttribute('data-target');
-            if (targetId) {
-                const el = document.getElementById(targetId);
-                if (el) { el.scrollIntoView({behavior:'smooth',block:'start'}); setActive(targetId); }
-                else if (targetId === 'settingsDummy') { alert('设置中心演示版'); setActive(targetId); }
-            }
-        });
-    });
-    setActive('dashboardSection');
-}
-
+// ═══ 初始化 ═══
 renderStockPool();
 renderMemorySystem();
-if (stocksData.length > 0) { currentStock = stocksData[0]; updateValuationAndSignals(currentStock); }
-initNavigation();
+if (stocksData.length > 0) { currentStock = stocksData[0]; }
+// 默认显示股票池Tab
+switchTab('pool');
 </script>
 </body>
 </html>
